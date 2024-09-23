@@ -163,8 +163,7 @@ void MainWindow::init_connect() {
         auto pid = spid.toInt(nullptr, 16);
 
         auto delete_func = [=]() -> bool {
-            auto size = ui->cb_devices->size();
-            for (auto i = 0; i < size.width(); i++) {
+            for (auto i = 0; i < ui->cb_devices->count(); i++) {
                 auto d = ui->cb_devices->itemData(i);
                 QJsonDocument doc =
                     QJsonDocument::fromJson(d.toString().toUtf8());
@@ -176,7 +175,6 @@ void MainWindow::init_connect() {
                 auto filter_pid = obj["product_id"].toInt();
                 if (filter_vid != vid || filter_pid != pid) {
                     ui->cb_devices->removeItem(i);
-                    return true;
                 }
             }
             return false;
@@ -186,7 +184,9 @@ void MainWindow::init_connect() {
                 break;
             }
         }
-        //        ui->cb_devices->setCurrentIndex(0);
+        if (ui->cb_devices->count() == 0) {
+            clear_ui();
+        }
     });
 }
 
@@ -225,4 +225,21 @@ void MainWindow::init_ui() {
     Config c;
     ui->le_vid->setText(c.vid);
     ui->le_pid->setText(c.pid);
+}
+
+void MainWindow::clear_ui() {
+    ui->cb_paths->clear();
+    ui->lb_path->clear();
+    ui->lb_vid->clear();
+    ui->lb_pid->clear();
+    ui->lb_product->clear();
+    ui->lb_manufacturer->clear();
+    ui->lb_interface_num->clear();
+    ui->lb_release_num->clear();
+    ui->lb_usage->clear();
+    ui->lb_usage_page->clear();
+    ui->lb_serial_num->clear();
+    ui->lb_feature_len->clear();
+    ui->lb_output_len->clear();
+    ui->lb_input_len->clear();
 }

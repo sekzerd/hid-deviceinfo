@@ -38,6 +38,7 @@ private:
     QJsonArray fetch_devices();
     //    QMap<QString, hid_device *> fetch_devices();
     void init_ui();
+    void clear_ui();
 
 private:
     hid_device *_dev = nullptr;
