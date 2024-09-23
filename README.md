@@ -1,2 +1,2 @@
-# hid_template
+# hid_deviceinfo
 for windows
