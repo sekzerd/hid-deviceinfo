@@ -26,4 +26,5 @@ output/
 
 build-*/
 build/
+.qtc_clangd/
 msvc_make.bat
