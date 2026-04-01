@@ -37,9 +37,6 @@ MainWindow::MainWindow(QWidget *parent)
         c.save();
     });
 
-    connect(ui->btn_filter, &QPushButton::clicked, this, [=]() {
-
-    });
 }
 
 MainWindow::~MainWindow() {}
@@ -175,6 +172,7 @@ void MainWindow::init_connect() {
                 auto filter_pid = obj["product_id"].toInt();
                 if (filter_vid != vid || filter_pid != pid) {
                     ui->cb_devices->removeItem(i);
+                    return true;
                 }
             }
             return false;
