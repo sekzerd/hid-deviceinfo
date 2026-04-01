@@ -25,4 +25,5 @@ output/
 *.rc
 
 build-*/
+build/
 msvc_make.bat
